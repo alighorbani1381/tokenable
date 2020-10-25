@@ -5,12 +5,12 @@ namespace alighorbani1381\TwoFactorAuth\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Validator;
-use alighorbani\TwoFactorAuth\Facades\AuthFacade;
-use alighorbani\TwoFactorAuth\Facades\TokenStoreFacade;
-use alighorbani\TwoFactorAuth\Facades\UserProviderFacade;
-use alighorbani\TwoFactorAuth\Facades\TokenGeneratorFacade;
-use alighorbani\TwoFactorAuth\Facades\TokenSenderFacade;
-use alighorbani\TwoFactorAuth\Http\ResponderFacade;
+use alighorbani1381\TwoFactorAuth\Facades\AuthFacade;
+use alighorbani1381\TwoFactorAuth\Facades\TokenStoreFacade;
+use alighorbani1381\TwoFactorAuth\Facades\UserProviderFacade;
+use alighorbani1381\TwoFactorAuth\Facades\TokenGeneratorFacade;
+use alighorbani1381\TwoFactorAuth\Facades\TokenSenderFacade;
+use alighorbani1381\TwoFactorAuth\Http\ResponderFacade;
 
 class TwoFactorAuthController extends Controller
 {

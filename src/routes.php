@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use alighorbani\TwoFactorAuth\Facades\TokenStoreFacade;
+use alighorbani1381\TwoFactorAuth\Facades\TokenStoreFacade;
 
 Route::post("requestToken", "TwoFactorAuthController@requestToken")->name('twofactor.login');
 

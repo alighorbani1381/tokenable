@@ -5,23 +5,23 @@ namespace alighorbani1381\TwoFactorAuth;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use alighorbani\TwoFactorAuth\TokenSender;
-use alighorbani\TwoFactorAuth\Facades\AuthFacade;
-use alighorbani\TwoFactorAuth\TokenStoreProvider;
-use alighorbani\TwoFactorAuth\Http\ResponderFacade;
-use alighorbani\TwoFactorAuth\Facades\TokenStoreFacade;
-use alighorbani\TwoFactorAuth\Authenticator\SessionAuth;
-use alighorbani\TwoFactorAuth\Facades\TokenSenderFacade;
-use alighorbani\TwoFactorAuth\Facades\UserProviderFacade;
-use alighorbani\TwoFactorAuth\Facades\TokenGeneratorFacade;
-use alighorbani\TwoFactorAuth\FakeProvider\FakeTokenSender;
-use alighorbani\TwoFactorAuth\Http\Responses\ReactResponder;
-use alighorbani\TwoFactorAuth\FakeProvider\FakeTokenStoreProvider;
+use alighorbani1381\TwoFactorAuth\TokenSender;
+use alighorbani1381\TwoFactorAuth\Facades\AuthFacade;
+use alighorbani1381\TwoFactorAuth\TokenStoreProvider;
+use alighorbani1381\TwoFactorAuth\Http\ResponderFacade;
+use alighorbani1381\TwoFactorAuth\Facades\TokenStoreFacade;
+use alighorbani1381\TwoFactorAuth\Authenticator\SessionAuth;
+use alighorbani1381\TwoFactorAuth\Facades\TokenSenderFacade;
+use alighorbani1381\TwoFactorAuth\Facades\UserProviderFacade;
+use alighorbani1381\TwoFactorAuth\Facades\TokenGeneratorFacade;
+use alighorbani1381\TwoFactorAuth\FakeProvider\FakeTokenSender;
+use alighorbani1381\TwoFactorAuth\Http\Responses\DefaultResponder;
+use alighorbani1381\TwoFactorAuth\FakeProvider\FakeTokenStoreProvider;
 
 class TwoFactorAuthServiceProvider extends ServiceProvider
 {
 
-	public $controllerNamespace = 'TwoFactorAuth\Http\Controllers';
+	public $controllerNamespace = 'alighorbani1381\TwoFactorAuth\Http\Controllers';
 
 	public function register()
 	{
@@ -48,7 +48,7 @@ class TwoFactorAuthServiceProvider extends ServiceProvider
 		UserProviderFacade::shouldProxyTo(UserProvider::class);
 		TokenGeneratorFacade::shouldProxyTo(TokenGeneratorProvider::class);
 		TokenStoreFacade::shouldProxyTo($tokenStore);
-		ResponderFacade::shouldProxyTo(ReactResponder::class);
+		ResponderFacade::shouldProxyTo(DefaultResponder::class);
 		TokenSenderFacade::shouldProxyTo($tokenSender);
 	}
 
@@ -56,7 +56,7 @@ class TwoFactorAuthServiceProvider extends ServiceProvider
 	{
 		Route::middleware('web')
 			->namespace($this->controllerNamespace)
-			->group(base_path('two_factor_auth\routes.php'));
+			->group(__DIR__.'/routes.php');
 	}
 
 	public function setConfigFile()

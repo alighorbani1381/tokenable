@@ -2,19 +2,23 @@
 
 namespace alighorbani1381\TwoFactorAuth\tests;
 
-use App\User;
-use alighorbani\TwoFactorAuth\Facades\AuthFacade;
-use alighorbani\TwoFactorAuth\Http\ResponderFacade;
-use alighorbani\TwoFactorAuth\Facades\UserProviderFacade;
-use alighorbani\TwoFactorAuth\Facades\TokenGeneratorFacade;
-use alighorbani1381\TwoFactorAuth\TestCase as TwoFactorAuthTestCase;
+
+use Illuminate\Foundation\Auth\User;
+use alighorbani1381\TwoFactorAuth\tests\TestCase;
+use alighorbani1381\TwoFactorAuth\Facades\AuthFacade;
+use alighorbani1381\TwoFactorAuth\Http\ResponderFacade;
+use alighorbani1381\TwoFactorAuth\Facades\UserProviderFacade;
+use alighorbani1381\TwoFactorAuth\Facades\TokenGeneratorFacade;
 
 
-class TwoFactorAuthTest extends TwoFactorAuthTestCase
+
+class TwoFactorAuthTest extends TestCase
 {
 
     public function test_the_happy_path()
     {
+
+        User::unguard();
 
         $user = new User(['id' => 1, 'email' => 'ali@gmail.com']);
 
@@ -46,6 +50,8 @@ class TwoFactorAuthTest extends TwoFactorAuthTestCase
 
     public function test_user_is_blocked()
     {
+        User::unguard();
+        
         $user = new User(['id' => 1, 'email' => 'ali@gmail.com']);
 
         UserProviderFacade::shouldReceive('getUserByEmail')
